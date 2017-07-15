@@ -1,6 +1,6 @@
 /**
  * \kernelgroup{SceSysmem}
- * \usage{psp2kern/kernel/sysmem.h,?}
+ * \usage{psp2kern/kernel/sysmem.h,SceSysmemForDriver_stub}
  */
 
 
@@ -54,7 +54,7 @@ typedef struct SceKernelAllocMemBlockKernelOpt {
   SceUInt32 field_54;
 } SceKernelAllocMemBlockKernelOpt;
 
-typedef struct SceKernelMemPoolCreateOpt {
+typedef struct SceKernelHeapCreateOpt {
   SceSize size;
   SceUInt32 uselock;
   SceUInt32 field_8;
@@ -62,7 +62,7 @@ typedef struct SceKernelMemPoolCreateOpt {
   SceUInt32 field_10;
   SceUInt32 field_14;
   SceUInt32 field_18;
-} SceKernelMemPoolCreateOpt;
+} SceKernelHeapCreateOpt;
 
 typedef struct SceCreateUidObjOpt {
   SceUInt32 flags;
@@ -82,7 +82,7 @@ enum {
 #define SCE_KERNEL_ALLOC_MEMBLOCK_ATTR_HAS_ALIGNMENT    0x00000004U
 
 /***
- * Allocates a new memoy block
+ * Allocates a new memory block
  *
  * @param[in] name - Name for the memory block
  * @param[in] type - Type of the memory to allocate
@@ -94,7 +94,7 @@ enum {
 SceUID ksceKernelAllocMemBlock(const char *name, SceKernelMemBlockType type, int size, SceKernelAllocMemBlockKernelOpt *optp);
 
 /***
- * Frees new memoy block
+ * Frees new memory block
  *
  * @param[in] uid - SceUID of the memory block to free
  *
@@ -103,7 +103,7 @@ SceUID ksceKernelAllocMemBlock(const char *name, SceKernelMemBlockType type, int
 int ksceKernelFreeMemBlock(SceUID uid);
 
 /***
- * Gets the base address of a memoy block
+ * Gets the base address of a memory block
  *
  * @param[in] uid - SceUID of the memory block to free
  * @param[out] basep - Base address of the memory block identified by SceUID
@@ -112,10 +112,30 @@ int ksceKernelFreeMemBlock(SceUID uid);
 */
 int ksceKernelGetMemBlockBase(SceUID uid, void **basep);
 
-SceUID ksceKernelMemPoolCreate(const char *name, SceSize size, SceKernelMemPoolCreateOpt *opt);
-int ksceKernelMemPoolDestroy(SceUID pool);
-void *ksceKernelMemPoolAlloc(SceUID pool, SceSize size);
-void ksceKernelMemPoolFree(SceUID pool, void *ptr);
+/***
+ * Find the SceUID of a memory block
+ *
+ * @param[in] addr - Base address of the memory block
+ * @param[in] size - Size to search for (usally set to 0)
+ *
+ * @return SceUID of the memory block on success, < 0 on error.
+*/
+SceUID ksceKernelFindMemBlockByAddr(const void *addr, SceSize size);
+
+/**
+ * Changes the block type
+ *
+ * @param[in] uid - SceUID of the memory block to change
+ * @param[in] type - Type of the memory to change to
+ *
+ * @return 0 on success, < 0 on error.
+ */
+int ksceKernelRemapBlock(SceUID uid, SceKernelMemBlockType type);
+
+SceUID ksceKernelCreateHeap(const char *name, SceSize size, SceKernelHeapCreateOpt *opt);
+int ksceKernelDeleteHeap(SceUID uid);
+void *ksceKernelAllocHeapMemory(SceUID uid, SceSize size);
+void ksceKernelFreeHeapMemory(SceUID uid, void *ptr);
 
 int ksceKernelMemcpyUserToKernelForPid(SceUID pid, void *dst, uintptr_t src, size_t len);
 int ksceKernelMemcpyUserToKernel(void *dst, uintptr_t src, size_t len);
@@ -137,7 +157,43 @@ typedef struct {
 SceUID ksceKernelKernelUidForUserUid(SceUID pid, SceUID user_uid);
 SceUID ksceKernelCreateUserUid(SceUID pid, SceUID kern_uid);
 SceUID ksceKernelCreateUidObj(SceClass *cls, const char *name, SceCreateUidObjOpt *opt, SceObjectBase **obj);
+
+/**
+ * Gets an object from a UID.
+ *
+ * This retains the object internally! You must call `ksceKernelUidRelease`
+ * after you are done using it.
+ *
+ * @param[in]  uid   The uid
+ * @param      cls   The class
+ * @param      obj   The object
+ *
+ * @return 0 on success, < 0 on error.
+ */
 int ksceKernelGetObjForUid(SceUID uid, SceClass *cls, SceObjectBase **obj);
+
+/**
+ * Retains an object referenced by the UID.
+ *
+ * This increases the internal reference count.
+ *
+ * @param[in]  uid   The uid
+ *
+ * @return 0 on success, < 0 on error.
+ */
+int ksceKernelUidRetain(SceUID uid);
+
+/**
+ * Releases an object referenced by the UID.
+ *
+ * This decreases the internal reference count.
+ *
+ * @param[in]  uid   The uid
+ *
+ * @return 0 on success, < 0 on error.
+ */
+int ksceKernelUidRelease(SceUID uid);
+
 SceClass *ksceKernelGetUidClass(void);
 typedef int (*SceClassCallback)(void *item);
 int ksceKernelCreateClass(SceClass *cls, const char *name, void *uidclass, size_t itemsize, SceClassCallback create, SceClassCallback destroy);
@@ -152,6 +208,22 @@ int ksceKernelGetPidContext(SceUID pid, int **ctx);
 int ksceKernelGetProcessTitleId(SceUID pid, char *titleid, size_t len);
 
 int ksceKernelMapBlockUserVisible(SceUID uid);
+
+int ksceKernelGetPaddr(void *addr, uintptr_t *paddr);
+
+int ksceSysrootIsManufacturingMode(void);
+
+int ksceDebugPrintf(const char *fmt, ...);
+
+int ksceDebugPrintf2(int unk0, int unk1, const char *fmt, ...);
+
+int ksceDebugSetHandlers(int (*func)(void *args, char c), void *args);
+
+int ksceDebugRegisterPutcharHandler(int (*func)(void *args, char c), void *args);
+
+void *ksceDebugGetPutcharHandler(void);
+
+int ksceDebugPutchar(int character);
 
 #ifdef __cplusplus
 }

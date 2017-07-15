@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+/usr/bin/clang++ -target i686-windows-gnu "$@"

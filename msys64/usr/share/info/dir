@@ -37,6 +37,9 @@ Compression
 Development
 * libffi: (libffi).             Portable foreign-function interface library.
 
+Editors
+* nano: (nano).                 Small and friendly text editor.
+
 Emacs
 * IDN Library: (libidn)Emacs API.
                                 Emacs API for IDN functions.
@@ -102,11 +105,54 @@ GNU organization
 * Maintaining Findutils: (find-maint).
                                 Maintaining GNU findutils
 
+GNU Packages
+* mpc: (mpc)Multiple Precision Complex Library.
+
 GNU Utilities
 * gpg: (gnupg1).                OpenPGP encryption and signing tool (v1).
 
 Individual utilities
+* aclocal-1.10: (automake1.10)Invoking aclocal. Generating aclocal.m4.
+* aclocal-1.11-invocation: (automake1.11)aclocal Invocation.
+                                                Generating aclocal.m4.
+* aclocal-1.12-invocation: (automake1.12)aclocal Invocation.
+                                                Generating aclocal.m4.
+* aclocal-1.13-invocation: (automake1.13)aclocal Invocation.
+                                                Generating aclocal.m4.
+* aclocal-1.14-invocation: (automake1.14)aclocal Invocation.
+                                                Generating aclocal.m4.
+* aclocal-1.15-invocation: (automake1.15)aclocal Invocation.
+                                                Generating aclocal.m4.
+* aclocal-1.6: (automake1.6)Invoking aclocal.   Generating aclocal.m4
+* aclocal-1.7: (automake1.7)Invoking aclocal.   Generating aclocal.m4.
+* aclocal-1.8: (automake1.8)Invoking aclocal.   Generating aclocal.m4.
+* aclocal-1.9: (automake1.9)Invoking aclocal.   Generating aclocal.m4.
 * arch: (coreutils)arch invocation.             Print machine hardware name.
+* autoconf-invocation: (autoconf)autoconf Invocation.
+                                                How to create configuration 
+                                                  scripts
+* autoheader: (autoconf)autoheader Invocation.  How to create configuration 
+                                                  templates
+* autom4te: (autoconf)autom4te Invocation.      The Autoconf executables 
+                                                  backbone
+* automake-1.10: (automake1.10)Invoking Automake.
+                                                Generating Makefile.in.
+* automake-1.11-invocation: (automake1.11)automake Invocation.
+                                                Generating Makefile.in.
+* automake-1.12-invocation: (automake1.12)automake Invocation.
+                                                Generating Makefile.in.
+* automake-1.13-invocation: (automake1.13)automake Invocation.
+                                                Generating Makefile.in.
+* automake-1.14-invocation: (automake1.14)automake Invocation.
+                                                Generating Makefile.in.
+* automake-1.15-invocation: (automake1.15)automake Invocation.
+                                                Generating Makefile.in.
+* autoreconf: (autoconf)autoreconf Invocation.  Remaking multiple 'configure' 
+                                                  scripts
+* autoscan: (autoconf)autoscan Invocation.      Semi-automatic 'configure.ac' 
+                                                  writing
+* autoupdate: (autoconf)autoupdate Invocation.  Automatic update of 
+                                                  'configure.ac'
 * awk: (gawk)Invoking gawk.                     Text scanning and processing.
 * base32: (coreutils)base32 invocation.         Base32 encode/decode data.
 * base64: (coreutils)base64 invocation.         Base64 encode/decode data.
@@ -118,13 +164,19 @@ Individual utilities
 * chown: (coreutils)chown invocation.           Change file owners and groups.
 * chroot: (coreutils)chroot invocation.         Specify the root directory.
 * cksum: (coreutils)cksum invocation.           Print POSIX CRC checksum.
+* cmp: (diffutils)Invoking cmp.                 Compare 2 files byte by byte.
 * comm: (coreutils)comm invocation.             Compare sorted files by line.
+* config.status: (autoconf)config.status Invocation.
+                                                Recreating configurations.
+* configure: (autoconf)configure Invocation.    Configuring a package.
 * cp: (coreutils)cp invocation.                 Copy files.
 * csplit: (coreutils)csplit invocation.         Split by context.
 * cut: (coreutils)cut invocation.               Print selected parts of lines.
 * date: (coreutils)date invocation.             Print/set system date and time.
 * dd: (coreutils)dd invocation.                 Copy and convert a file.
 * df: (coreutils)df invocation.                 Report file system disk usage.
+* diff: (diffutils)Invoking diff.               Compare 2 files line by line.
+* diff3: (diffutils)Invoking diff3.             Compare 3 files line by line.
 * dir: (coreutils)dir invocation.               List directories briefly.
 * dirname: (coreutils)dirname invocation.       Strip last file name component.
 * dircolors: (coreutils)dircolors invocation.   Color setup for ls.
@@ -149,10 +201,14 @@ Individual utilities
 * hostid: (coreutils)hostid invocation.         Print numeric host identifier.
 * hostname: (inetutils)hostname invocation.     Show or set system host name.
 * id: (coreutils)id invocation.                 Print user identity.
+* ifnames: (autoconf)ifnames Invocation.        Listing conditionals in source.
 * inetd: (inetutils)inetd invocation.           Internet super-server.
 * install: (coreutils)install invocation.       Copy files and set attributes.
 * join: (coreutils)join invocation.             Join lines on a common field.
 * kill: (coreutils)kill invocation.             Send a signal to processes.
+* libtool-invocation: (libtool)Invoking libtool.
+                                                Running the 'libtool' script.
+* libtoolize: (libtool)Invoking libtoolize.     Adding libtool support.
 * link: (coreutils)link invocation.             Make hard links between files.
 * ln: (coreutils)ln invocation.                 Make links between files.
 * locate: (find)Invoking locate.                Finding files in a database.
@@ -173,6 +229,7 @@ Individual utilities
 * numfmt: (coreutils)numfmt invocation.         Reformat numbers.
 * od: (coreutils)od invocation.                 Dump files in octal, etc.
 * paste: (coreutils)paste invocation.           Merge lines of files.
+* patch: (diffutils)Invoking patch.             Apply a patch to a file.
 * pathchk: (coreutils)pathchk invocation.       Check file name portability.
 * ping: (inetutils)ping invocation.             Packets to network hosts.
 * ping6: (inetutils)ping6 invocation.           Packets to IPv6 network hosts.
@@ -193,6 +250,7 @@ Individual utilities
 * rsh: (inetutils)rsh invocation.               Remote shell.
 * rshd: (inetutils)rshd invocation.             Remote shell server.
 * runcon: (coreutils)runcon invocation.         Run in specified SELinux CTX.
+* sdiff: (diffutils)Invoking sdiff.             Merge 2 files side-by-side.
 * seq: (coreutils)seq invocation.               Print numeric sequences
 * sha1sum: (coreutils)sha1sum invocation.       Print or check SHA-1 digests.
 * sha2: (coreutils)sha2 utilities.              Print or check SHA-2 digests.
@@ -216,6 +274,7 @@ Individual utilities
 * telnet: (inetutils)telnet invocation.         User interface to TELNET.
 * telnetd: (inetutils)telnetd invocation.       Telnet server.
 * test: (coreutils)test invocation.             File/string tests.
+* testsuite: (autoconf)testsuite Invocation.    Running an Autotest test suite.
 * tftp: (inetutils)tftp invocation.             TFTP client.
 * tftpd: (inetutils)tftpd invocation.           TFTP server.
 * timeout: (coreutils)timeout invocation.       Run with time limit.
@@ -270,7 +329,33 @@ Programming & development tools
 * GDBM: (gdbm).                 The GNU database manager.
 
 Software development
+* Autoconf: (autoconf).         Create source code configuration scripts.
+* Automake-1.10: (automake1.10).
+                                Making GNU standards-compliant Makefiles.
+* Automake-1.11: (automake1.11).
+                                Making GNU standards-compliant Makefiles.
+* Automake-1.12: (automake1.12).
+                                Making GNU standards-compliant Makefiles.
+* Automake-1.13: (automake1.13).
+                                Making GNU standards-compliant Makefiles.
+* Automake-1.14: (automake1.14).
+                                Making GNU standards-compliant Makefiles.
+* Automake1.15: (automake).     Making GNU standards-compliant Makefiles.
+* Cpp: (cpp).                   The GNU C preprocessor.
+* Cpplib: (cppinternals).       Cpplib internals.
+* Libtool: (libtool).           Generic shared library support script.
 * Make: (make).                 Remake files automatically.
+* automake-1.6: (automake1.6).  Making Makefile.in's
+* automake-1.7: (automake1.7).  Making Makefile.in's.
+* automake-1.8: (automake1.8).  Making Makefile.in's.
+* automake-1.9: (automake1.9).  Making Makefile.in's.
+* g++: (gcc).                   The GNU C++ compiler.
+* gcc: (gcc).                   The GNU Compiler Collection.
+* gccinstall: (gccinstall).     Installing the GNU Compiler Collection.
+* gccint: (gccint).             Internals of the GNU Compiler Collection.
+* gcov: (gcc) Gcov.             'gcov'--a test coverage program.
+* gcov-tool: (gcc) Gcov-tool.   'gcov-tool'--an offline gcda profile 
+                                  processing program.
 
 Software libraries
 * libidn: (libidn).             Internationalized string processing library.
@@ -287,6 +372,7 @@ Texinfo documentation system
                                 Read Info documents without Emacs.
 
 Text creation and manipulation
+* Diffutils: (diffutils).       Comparing and merging files.
 * Gawk: (gawk).                 A text scanning and processing language.
 * M4: (m4).                     A powerful macro processor.
 * grep: (grep).                 Print lines matching a pattern.

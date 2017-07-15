@@ -145,3 +145,98 @@
 [2017-02-13 14:32] [ALPM] installed tar (1.29-1)
 [2017-02-13 14:32] [ALPM] installed mingw-w64-x86_64-libwinpthread-git (5.0.0.4741.2c8939a-1)
 [2017-02-13 14:32] [ALPM] transaction completed
+[2017-04-30 15:13] [PACMAN] Running 'pacman -S gcc'
+[2017-04-30 15:14] [ALPM] transaction started
+[2017-04-30 15:14] [ALPM] installed binutils (2.25.1-2)
+[2017-04-30 15:14] [ALPM] installed isl (0.16.1-1)
+[2017-04-30 15:14] [ALPM] installed mpc (1.0.3-1)
+[2017-04-30 15:14] [ALPM] installed msys2-runtime-devel (2.6.0-1)
+[2017-04-30 15:14] [ALPM] installed msys2-w32api-headers (5.0.0.4732.6172d2f-1)
+[2017-04-30 15:14] [ALPM] installed msys2-w32api-runtime (5.0.0.4732.6172d2f-1)
+[2017-04-30 15:14] [ALPM] installed windows-default-manifest (6.4-1)
+[2017-04-30 15:14] [ALPM] installed gcc (5.3.0-3)
+[2017-04-30 15:14] [ALPM] transaction completed
+[2017-04-30 15:14] [PACMAN] Running 'pacman -S zlib1g-devel'
+[2017-04-30 15:14] [PACMAN] Running 'pacman -S zlib1g-dev'
+[2017-04-30 15:14] [PACMAN] Running 'pacman -S zlib-devel'
+[2017-04-30 15:15] [ALPM] transaction started
+[2017-04-30 15:15] [ALPM] installed zlib-devel (1.2.8-3)
+[2017-04-30 15:15] [ALPM] transaction completed
+[2017-05-03 01:53] [PACMAN] Running 'pacman -S automake make'
+[2017-05-03 01:55] [ALPM] transaction started
+[2017-05-03 01:55] [ALPM] installed automake1.6 (1.6.3-2)
+[2017-05-03 01:55] [ALPM] installed automake1.7 (1.7.9-2)
+[2017-05-03 01:55] [ALPM] installed automake1.8 (1.8.5-3)
+[2017-05-03 01:55] [ALPM] installed automake1.9 (1.9.6-2)
+[2017-05-03 01:55] [ALPM] installed automake1.10 (1.10.3-3)
+[2017-05-03 01:55] [ALPM] installed automake1.11 (1.11.6-3)
+[2017-05-03 01:55] [ALPM] installed automake1.12 (1.12.6-3)
+[2017-05-03 01:55] [ALPM] installed automake1.13 (1.13.4-4)
+[2017-05-03 01:55] [ALPM] installed automake1.14 (1.14.1-3)
+[2017-05-03 01:55] [ALPM] installed automake1.15 (1.15-2)
+[2017-05-03 01:55] [ALPM] installed automake-wrapper (10-1)
+[2017-05-03 01:55] [ALPM] reinstalled make (4.2.1-1)
+[2017-05-03 01:55] [ALPM] transaction completed
+[2017-05-03 01:56] [PACMAN] Running 'pacman -S autom4te'
+[2017-05-03 01:56] [PACMAN] Running 'pacman -S automate'
+[2017-05-03 01:57] [PACMAN] Running 'pacman -S autoconf'
+[2017-05-03 01:57] [ALPM] transaction started
+[2017-05-03 01:57] [ALPM] installed diffutils (3.5-1)
+[2017-05-03 01:57] [ALPM] installed autoconf (2.69-3)
+[2017-05-03 01:57] [ALPM] transaction completed
+[2017-05-03 01:58] [PACMAN] Running 'pacman -S libtool'
+[2017-05-03 01:58] [ALPM] transaction started
+[2017-05-03 01:58] [ALPM] installed libltdl (2.4.6-2)
+[2017-05-03 01:58] [ALPM] installed libtool (2.4.6-2)
+[2017-05-03 01:58] [ALPM] transaction completed
+[2017-05-04 20:11] [PACMAN] Running 'pacman -S libssl'
+[2017-05-04 20:11] [PACMAN] Running 'pacman -S libcrypto'
+[2017-05-04 20:11] [PACMAN] Running 'pacman -S openssl'
+[2017-05-04 20:11] [ALPM] transaction started
+[2017-05-04 20:11] [ALPM] reinstalled openssl (1.0.2.j-1)
+[2017-05-04 20:11] [ALPM] transaction completed
+[2017-05-04 20:11] [PACMAN] Running 'pacman -S openssl-devel'
+[2017-05-04 20:11] [ALPM] transaction started
+[2017-05-04 20:11] [ALPM] installed openssl-devel (1.0.2.j-1)
+[2017-05-04 20:11] [ALPM] transaction completed
+[2017-05-06 22:07] [PACMAN] Running 'pacman -S bin2c'
+[2017-05-15 22:20] [PACMAN] Running 'pacman -S axel'
+[2017-05-15 22:23] [PACMAN] Running 'pacman -S libintl'
+[2017-05-15 22:23] [ALPM] transaction started
+[2017-05-15 22:23] [ALPM] reinstalled libintl (0.19.7-3)
+[2017-05-15 22:23] [ALPM] transaction completed
+[2017-05-15 22:23] [PACMAN] Running 'pacman -S libintl-devel'
+[2017-05-15 22:23] [PACMAN] Running 'pacman -S libintl-dev'
+[2017-05-15 22:23] [PACMAN] Running 'pacman -S libintl'
+[2017-05-15 22:23] [ALPM] transaction started
+[2017-05-15 22:23] [ALPM] reinstalled libintl (0.19.7-3)
+[2017-05-15 22:23] [ALPM] transaction completed
+[2017-05-15 22:24] [PACMAN] Running 'pacman -S libc6-devel'
+[2017-05-15 22:24] [PACMAN] Running 'pacman -S libc6'
+[2017-05-15 22:25] [PACMAN] Running 'pacman -S glibc'
+[2017-05-15 22:25] [PACMAN] Running 'pacman -S glibc-devel'
+[2017-06-04 22:12] [PACMAN] Running 'pacman -S nano'
+[2017-06-04 22:12] [ALPM] transaction started
+[2017-06-04 22:12] [ALPM] installed nano (2.7.0-1)
+[2017-06-04 22:12] [ALPM] transaction completed
+[2017-06-08 23:44] [PACMAN] Running 'pacman -S gcc49'
+[2017-06-08 23:44] [PACMAN] Running 'pacman -S gcc'
+[2017-06-08 23:44] [ALPM] transaction started
+[2017-06-08 23:44] [ALPM] reinstalled gcc (5.3.0-3)
+[2017-06-08 23:44] [ALPM] transaction completed
+[2017-06-08 23:44] [PACMAN] Running 'pacman -S gcc49'
+[2017-06-08 23:44] [PACMAN] Running 'pacman -S gcc4'
+[2017-06-09 08:50] [PACMAN] Running 'pacman -S gmp'
+[2017-06-09 08:50] [ALPM] transaction started
+[2017-06-09 08:50] [ALPM] reinstalled gmp (6.1.0-2)
+[2017-06-09 08:50] [ALPM] transaction completed
+[2017-06-09 08:50] [PACMAN] Running 'pacman -S libgmp'
+[2017-06-09 08:50] [PACMAN] Running 'pacman -S gmp-devel'
+[2017-06-09 08:50] [ALPM] transaction started
+[2017-06-09 08:50] [ALPM] installed gmp-devel (6.1.0-2)
+[2017-06-09 08:50] [ALPM] transaction completed
+[2017-06-09 09:05] [PACMAN] Running 'pacman -S clang'
+[2017-06-09 09:08] [ALPM] transaction started
+[2017-06-09 09:08] [ALPM] installed llvm-svn (124592.2aebced-1)
+[2017-06-09 09:08] [ALPM] installed clang-svn (60106.1d5b05f-1)
+[2017-06-09 09:08] [ALPM] transaction completed

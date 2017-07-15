@@ -188,3 +188,5 @@
 # }
 # 
 # alias cd=cd_func
+PS4SDK=/c/xampp/htdocs/playground_droogie/PS4-SDK
+LIBPS4=$PS4SDK/libPS4

@@ -1,6 +1,6 @@
 /**
  * \usergroup{SceModulemgr}
- * \usage{psp2/kernel/modulemgr.h,-lSceKernel_stub}
+ * \usage{psp2/kernel/modulemgr.h}
  */
 
 
@@ -27,21 +27,21 @@ extern "C" {
 #define SCE_KERNEL_STOP_CANCEL        SCE_KERNEL_STOP_FAIL
 /** @} */
 
-typedef struct
+typedef struct SceKernelSegmentInfo
 {
-	SceUInt size;	//< this structure size (0x18)
-	SceUInt perms;	//< probably rwx in low bits
-	void *vaddr;	//< address in memory
-	SceUInt memsz;	//< size in memory
-	SceUInt flags;	//< meanig unknown
-	SceUInt res;	//< unused?
+	SceUInt size;   //!< sizeof(SceKernelSegmentInfo)
+	SceUInt perms;  //!< probably rwx in low bits
+	void *vaddr;    //!< address in memory
+	SceUInt memsz;  //!< size in memory
+	SceUInt flags;  //!< meaning unknown
+	SceUInt res;    //!< unused?
 } SceKernelSegmentInfo;
 
 typedef struct
 {
-	SceUInt size;	//< 0x1B8 for Vita 1.x
-	SceUInt handle;	//< kernel module handle?
-	SceUInt flags;	//< some bits. could be priority or whatnot
+	SceUInt size;                       //!< 0x1B8 for Vita 1.x
+	SceUInt handle;	                    //!< kernel module handle?
+	SceUInt flags;                      //!< some bits. could be priority or whatnot
 	char module_name[28];
 	SceUInt unk28;
 	void *module_start;
@@ -56,7 +56,7 @@ typedef struct
 	SceSize tlsAreaSize;
 	char path[256];
 	SceKernelSegmentInfo segments[4];
-	SceUInt type;	//< 6 = user-mode PRX?
+	SceUInt type;	                    //!< 6 = user-mode PRX?
 } SceKernelModuleInfo;
 
 typedef struct {
@@ -72,6 +72,9 @@ int sceKernelGetModuleInfo(SceUID modid, SceKernelModuleInfo *info);
 
 SceUID sceKernelLoadModule(char *path, int flags, SceKernelLMOption *option);
 int sceKernelUnloadModule(SceUID modid, int flags, SceKernelULMOption *option);
+
+int sceKernelStartModule(SceUID modid, SceSize args, void *argp, int flags, void *option, int *status);
+int sceKernelStopModule(SceUID modid, SceSize args, void *argp, int flags, void *option, int *status);
 
 SceUID sceKernelLoadStartModule(char *path, SceSize args, void *argp, int flags, SceKernelLMOption *option, int *status);
 int sceKernelStopUnloadModule(SceUID modid, SceSize args, void *argp, int flags, SceKernelULMOption *option, int *status);

@@ -1,6 +1,6 @@
 /**
  * \usergroup{ScePower}
- * \usage{psp2/power.h,-lScePower_stub}
+ * \usage{psp2/power.h,ScePower_stub}
  */
 
 
@@ -14,10 +14,21 @@
 extern "C" {
 #endif
 
+typedef enum ScePowerCallbackType {
+	/** indicates the unit is suspending, seems to occur due to inactivity */
+	SCE_POWER_CB_SUSPENDING       = 0x00010000,
+	/** indicates the unit is resuming from suspend mode */
+	SCE_POWER_CB_RESUMING         = 0x00020000,
+	/** indicates the unit has finish resuming from suspend mode */
+	SCE_POWER_CB_RESUME_COMPLETE  = 0x00040000
+} ScePowerCallbackType;
+
 /* Callbacks */
 
 /** Callback function prototype */
-typedef void (*ScePowerCallback)(int unknown, int powerInfo);
+typedef void (*ScePowerCallback)(int notifyId, int notifyCount, int powerInfo);
+
+/* Prototypes */
 
 /**
  * Registers a ScePower Callback
@@ -36,8 +47,6 @@ int scePowerRegisterCallback(SceUID cbid);
  * @return 0 on success, < 0 on error
  */
 int scePowerUnregisterCallback(SceUID cbid);
-
-/* Prototypes */
 
 /**
  * Returns battery charging status
@@ -84,9 +93,9 @@ SceBool scePowerIsPowerOnline(void);
 int scePowerGetBatteryLifeTime(void);
 
 /**
- * Returns battery remaining capacity ?
+ * Returns battery remaining capacity
  *
- * @return ?
+ * @return battery remaining capacity in mAh (milliampere hour)
  */
 int scePowerGetBatteryRemainCapacity(void);
 
@@ -98,18 +107,46 @@ int scePowerGetBatteryRemainCapacity(void);
 SceBool scePowerIsLowBattery(void);
 
 /**
- * Returns battery full capacity ?
+ * Returns battery full capacity
  *
- * @return ?
+ * @return battery full capacity in mAh (milliampere hour)
  */
 int scePowerGetBatteryFullCapacity(void);
+
+/**
+ * Returns battery temperature
+ *
+ * @return temperature in degrees celcius * 100
+ */
+int scePowerGetBatteryTemp(void);
+
+/**
+ * Returns battery voltage
+ *
+ * @return battery voltage in mV (millivolts)
+ */
+int scePowerGetBatteryVolt(void);
+
+/**
+ * Returns battery state of health
+ *
+ * @return battery state of health percent
+ */
+int scePowerGetBatterySOH(void);
+
+/**
+ * Returns battery cycle count
+ *
+ * @return battery cycle count
+ */
+int scePowerGetBatteryCycleCount(void);
 
 /**
  * Returns CPU clock frequency
  *
  * @return CPU clock frequency in Mhz
  */
-int scePowerGetArmClockFrequency(void); 
+int scePowerGetArmClockFrequency(void);
 
 /**
  * Returns BUS clock frequency
@@ -154,6 +191,13 @@ int scePowerRequestStandby(void);
 int scePowerRequestSuspend(void);
 
 /**
+ * Request display off
+ *
+ * @return always 0
+ */
+int scePowerRequestDisplayOff(void);
+
+/**
  * Sets CPU clock frequency
  *
  * @param freq - Frequency to set in Mhz
@@ -194,4 +238,3 @@ int scePowerSetGpuXbarClockFrequency(int freq);
 #endif
 
 #endif /* _PSP2_POWER_H_ */
-

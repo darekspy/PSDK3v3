@@ -1,0 +1,11 @@
+%FILES%
+usr/
+usr/include/
+usr/include/zconf.h
+usr/include/zlib.h
+usr/lib/
+usr/lib/libz.a
+usr/lib/libz.dll.a
+usr/lib/pkgconfig/
+usr/lib/pkgconfig/zlib.pc
+

@@ -1,6 +1,6 @@
 /**
  * \usergroup{SceSqlite}
- * \usage{psp2/sqlite.h,-lSceSqlite_stub}
+ * \usage{psp2/sqlite.h,SceSqlite_stub}
  */
 
 
@@ -15,7 +15,7 @@ typedef struct{
 	void *(*xMalloc)(int);
 	void *(*xRealloc)(void*,int);
 	void (*xFree)(void*);
-}SceSqliteMallocMethods;
+} SceSqliteMallocMethods;
 
 /**
  * Wrapper for sqlite3_config(SQLITE_CONFIG_MALLOC)

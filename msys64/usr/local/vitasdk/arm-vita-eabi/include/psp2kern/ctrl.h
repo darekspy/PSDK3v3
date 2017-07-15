@@ -1,6 +1,6 @@
 /**
  * \kernelgroup{SceCtrl}
- * \usage{psp2kern/ctrl.h,-lSceCtrlForDriver_stub}
+ * \usage{psp2kern/ctrl.h,SceCtrlForDriver_stub}
  */
 
 
@@ -22,25 +22,27 @@ enum {
 /** Enumeration for the digital controller buttons.
  * L1/R1/L3/R3 only can bind using ksceCtrlReadBufferPositiveExt2 */
 enum SceCtrlPadButtons {
-	SCE_CTRL_SELECT      = 0x000001,	//!< Select button.
-	SCE_CTRL_L3          = 0x000002,	//!< L3 button.
-	SCE_CTRL_R3          = 0x000004,	//!< R3 button.
-	SCE_CTRL_START       = 0x000008,	//!< Start button.
-	SCE_CTRL_UP          = 0x000010,	//!< Up D-Pad button.
-	SCE_CTRL_RIGHT       = 0x000020,	//!< Right D-Pad button.
-	SCE_CTRL_DOWN        = 0x000040,	//!< Down D-Pad button.
-	SCE_CTRL_LEFT        = 0x000080,	//!< Left D-Pad button.
-	SCE_CTRL_LTRIGGER    = 0x000100,	//!< Left trigger.
-	SCE_CTRL_RTRIGGER    = 0x000200,	//!< Right trigger.
-	SCE_CTRL_L1          = 0x000400,	//!< L1 button.
-	SCE_CTRL_R1          = 0x000800,	//!< R1 button.
-	SCE_CTRL_TRIANGLE    = 0x001000,	//!< Triangle button.
-	SCE_CTRL_CIRCLE      = 0x002000,	//!< Circle button.
-	SCE_CTRL_CROSS       = 0x004000,	//!< Cross button.
-	SCE_CTRL_SQUARE      = 0x008000,	//!< Square button.
-	SCE_CTRL_INTERCEPTED = 0x010000,        //!< Input not available because intercepted by another application
-	SCE_CTRL_VOLUP       = 0x100000,	//!< Volume up button.
-	SCE_CTRL_VOLDOWN     = 0x200000		//!< Volume down button.
+	SCE_CTRL_SELECT      = 0x00000001,  //!< Select button.
+	SCE_CTRL_L3          = 0x00000002,  //!< L3 button.
+	SCE_CTRL_R3          = 0x00000004,  //!< R3 button.
+	SCE_CTRL_START       = 0x00000008,  //!< Start button.
+	SCE_CTRL_UP          = 0x00000010,  //!< Up D-Pad button.
+	SCE_CTRL_RIGHT       = 0x00000020,  //!< Right D-Pad button.
+	SCE_CTRL_DOWN        = 0x00000040,  //!< Down D-Pad button.
+	SCE_CTRL_LEFT        = 0x00000080,  //!< Left D-Pad button.
+	SCE_CTRL_LTRIGGER    = 0x00000100,  //!< Left trigger.
+	SCE_CTRL_RTRIGGER    = 0x00000200,  //!< Right trigger.
+	SCE_CTRL_L1          = 0x00000400,  //!< L1 button.
+	SCE_CTRL_R1          = 0x00000800,  //!< R1 button.
+	SCE_CTRL_TRIANGLE    = 0x00001000,  //!< Triangle button.
+	SCE_CTRL_CIRCLE      = 0x00002000,  //!< Circle button.
+	SCE_CTRL_CROSS       = 0x00004000,  //!< Cross button.
+	SCE_CTRL_SQUARE      = 0x00008000,  //!< Square button.
+	SCE_CTRL_INTERCEPTED = 0x00010000,  //!< Input not available because intercepted by another application
+	SCE_CTRL_HEADPHONE   = 0x00080000,  //!< Headphone plugged in.
+	SCE_CTRL_VOLUP       = 0x00100000,  //!< Volume up button.
+	SCE_CTRL_VOLDOWN     = 0x00200000,  //!< Volume down button.
+	SCE_CTRL_POWER       = 0x40000000   //!< Power button.
 };
 
 /** Enumeration for the controller types. */
@@ -54,7 +56,7 @@ enum  SceCtrlExternalInputMode {
 
 /** Controller mode. */
 enum SceCtrlPadInputMode {
-	/** Digitial buttons only. */
+	/** Digital buttons only. */
 	SCE_CTRL_MODE_DIGITAL = 0,
 	/** Digital buttons + Analog support. */
 	SCE_CTRL_MODE_ANALOG = 1,
@@ -108,6 +110,23 @@ typedef struct SceCtrlPortInfo {
 	uint8_t port[5];  //!< Controller type of each ports
 	uint8_t unk[11];  //!< Unknown
 } SceCtrlPortInfo;
+
+/** Structure to pass as argument to ::ksceCtrlRegisterVirtualControllerDriver */
+typedef struct SceCtrlVirtualControllerDriver {
+	int (*readButtons)(int port, SceCtrlData *pad_data, int count);
+	int (*setActuator)(int port, const SceCtrlActuator* pState);
+	int (*getBatteryInfo)(int port, SceUInt8 *batt);
+	int (*disconnect)(int port);
+	int (*setTurnOffInterval)(int port);
+	int (*getActiveControllerPort)(void);
+	int (*changePortAssign)(int port1, int port2);
+	int (*unk0)(void);
+	int (*getControllerPortInfo)(SceCtrlPortInfo *info);
+	int (*setLightBar)(int port, SceUInt8 r, SceUInt8 g, SceUInt8 b);
+	int (*resetLightBar)(int port);
+	int (*unk1)(int port);
+	int (*singleControllerMode)(int port);
+} SceCtrlVirtualControllerDriver;
 
 /**
  * Set the controller mode.
@@ -232,7 +251,7 @@ int ksceCtrlGetButtonIntercept(int *intercept);
  * @param kernelButtons Emulated buttons of ::SceCtrlPadButtons (you can emulate both user and
  *                      kernel buttons). The emulated buttons will only be applied for applications
  *                      running in kernel mode.
- * @param uiMake Specifies the duration of the emulation. Meassured in sampling counts.
+ * @param uiMake Specifies the duration of the emulation. Measured in sampling counts.
  *
  * @return 0 on success.
  */
@@ -254,7 +273,7 @@ int ksceCtrlSetButtonEmulation(unsigned int port, unsigned char slot,
  * @param kernel_lY New emulate value for the left joystick's Y-axis (kernelspace). Between 0 - 0xFF.
  * @param kernel_rX New emulated value for the right joystick's X-axis (kernelspace). Between 0 - 0xFF.
  * @param kernel_rY New emulate value for the right joystick's Y-axis (kernelspace). Between 0 - 0xFF.
- * @param uiMake Specifies the duration of the emulation. Meassured in sampling counts.
+ * @param uiMake Specifies the duration of the emulation. Measured in sampling counts.
  *
  * @return 0 on success.
  */
@@ -264,6 +283,17 @@ int ksceCtrlSetAnalogEmulation(unsigned int port, unsigned char slot,
 			      unsigned char kernel_lX, unsigned char kernel_lY,
 			      unsigned char kernel_rX, unsigned char kernel_rY,
 			      unsigned int uiMake);
+
+/**
+ * Register virtual controller driver.
+ *
+ * This function always overwrites global settings and not exist unregister method.
+ *
+ * @param[in] driver - See ::SceCtrlVirtualControllerDriver
+ *
+ * @return 0 on success. <0 on error
+ */
+int ksceCtrlRegisterVirtualControllerDriver(SceCtrlVirtualControllerDriver *driver);
 
 #ifdef __cplusplus
 }

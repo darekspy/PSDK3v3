@@ -1,6 +1,6 @@
 /**
  * \kernelgroup{SceModulemgr}
- * \usage{psp2kern/kernel/modulemgr.h,?}
+ * \usage{psp2kern/kernel/modulemgr.h,SceModulemgrForKernel_stub}
  */
 
 
@@ -33,7 +33,7 @@ typedef struct
   SceUInt perms;  //< probably rwx in low bits
   void *vaddr;  //< address in memory
   SceUInt memsz;  //< size in memory
-  SceUInt flags;  //< meanig unknown
+  SceUInt flags;  //< meaning unknown
   SceUInt res;  //< unused?
 } SceKernelSegmentInfo;
 
@@ -93,10 +93,14 @@ int ksceKernelStopUnloadModule(SceUID modid, SceSize args, void *argp, int flags
 
 SceUID ksceKernelLoadStartSharedModuleForPid(SceUID pid, const char *path, SceSize args, void *argp, int flags, SceKernelLMOption *option, int *status);
 SceUID ksceKernelLoadStartModuleForPid(SceUID pid, const char *path, SceSize args, void *argp, int flags, SceKernelLMOption *option, int *status);
+int ksceKernelStartModuleForPid(SceUID pid, SceUID modid, SceSize args, void *argp, int flags, SceKernelLMOption *option, int *status);
 SceUID ksceKernelLoadModuleForPid(SceUID pid, const char *path, int flags, SceKernelLMOption *option);
 SceUID ksceKernelUnloadModuleForPid(SceUID pid, SceUID modid, int flags, SceKernelULMOption *option);
 int ksceKernelStopModuleForPid(SceUID pid, SceUID modid, SceSize args, void *argp, int flags, SceKernelULMOption *option, int *status);
 int ksceKernelStopUnloadModuleForPid(SceUID pid, SceUID modid, SceSize args, void *argp, int flags, SceKernelULMOption *option, int *status);
+
+int ksceKernelMountBootfs(const char *bootImagePath);
+int ksceKernelUmountBootfs(void);
 
 #ifdef __cplusplus
 }

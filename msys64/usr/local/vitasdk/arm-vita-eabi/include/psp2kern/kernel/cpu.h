@@ -1,6 +1,6 @@
 /**
  * \kernelgroup{SceCPU}
- * \usage{psp2kern/kernel/cpu.h,?}
+ * \usage{psp2kern/kernel/cpu.h,SceCpuForDriver_stub}
  */
 
 
@@ -86,29 +86,7 @@ int ksceKernelCpuDisableInterrupts(void);
 int ksceKernelCpuEnableInterrupts(int flags);
 
 /**
- * @brief      Flush L1 dcache and L2
- *
- * Note: symbols currently does not work on 3.x, need to find new ones.
- *
- * @param      ptr   The pointer
- * @param[in]  len   The length
- *
- * @return     Zero on success
- */
-int ksceKernelCpuDcacheAndL2Flush(void *ptr, size_t len);
-
-/**
- * @brief      Flush L2 dcache without L2
- *
- * @param      ptr   The pointer
- * @param[in]  len   The length
- *
- * @return     Zero on success
- */
-int ksceKernelCpuDcacheFlush(void *ptr, size_t len);
-
-/**
- * @brief      Writeback a range of L1 dcache (not sure if L2 too)
+ * @brief      Writeback a range of L1 dcache (without L2)
  *
  * @param      ptr   The pointer
  * @param[in]  len   The length
@@ -118,24 +96,102 @@ int ksceKernelCpuDcacheFlush(void *ptr, size_t len);
 int ksceKernelCpuDcacheWritebackRange(void *ptr, size_t len);
 
 /**
- * @brief      Flush L1 icache and L2
+ * @brief      Invalidate a range of L1 dcache (without L2)
  *
  * @param      ptr   The pointer
  * @param[in]  len   The length
  *
  * @return     Zero on success
  */
-int ksceKernelCpuIcacheAndL2Flush(void *ptr, size_t len);
+int ksceKernelCpuDcacheInvalidateRange(void *ptr, size_t len);
 
 /**
- * @brief      Flush L1 dcache and L2 for DMA operations
+ * @brief      Writeback and invalidate a range of L1 dcache (without L2)
  *
  * @param      ptr   The pointer
  * @param[in]  len   The length
  *
  * @return     Zero on success
  */
-int ksceKernelCpuDcacheAndL2AndDMAFlush(void *ptr, size_t len);
+int ksceKernelCpuDcacheWritebackInvalidateRange(void *ptr, size_t len);
+
+/**
+ * @brief      Invalidate all the L1 dcache (without L2)
+ *
+ * @return     Zero on success
+ */
+int ksceKernelCpuDcacheInvalidateAll(void);
+
+/**
+ * @brief      Writeback all the L1 dcache (without L2)
+ *
+ * @return     Zero on success
+ */
+int ksceKernelCpuDcacheWritebackAll(void);
+
+/**
+ * @brief      Writeback and invalidate all the L1 dcache (without L2)
+ *
+ * @return     Zero on success
+ */
+int ksceKernelCpuDcacheWritebackInvalidateAll(void);
+
+/**
+ * @brief      Writeback a range of L1 dcache and L2
+ *
+ * @param      ptr   The pointer
+ * @param[in]  len   The length
+ *
+ * @return     Zero on success
+ */
+int ksceKernelCpuDcacheAndL2WritebackRange(void *ptr, size_t len);
+
+/**
+ * @brief      Writeback and invalidate a range of L1 dcache and L2
+ *
+ * @param      ptr   The pointer
+ * @param[in]  len   The length
+ *
+ * @return     Zero on success
+ */
+int ksceKernelCpuDcacheAndL2InvalidateRange(void *ptr, size_t len);
+
+/**
+ * @brief      Writeback and invalidate a range of L1 dcache and L2
+ *
+ * @param      ptr   The pointer
+ * @param[in]  len   The length
+ *
+ * @return     Zero on success
+ */
+int ksceKernelCpuDcacheAndL2WritebackInvalidateRange(void *ptr, size_t len);
+
+/**
+ * @brief      Invalidate a range of L1 icache (without L2)
+ *
+ * @param      ptr   The pointer
+ * @param[in]  len   The length
+ *
+ * @return     Zero on success
+ */
+int ksceKernelCpuIcacheInvalidateRange(void *ptr, size_t len);
+
+/**
+ * @brief      Invalidate all the L1 icache (without L2)
+ *
+ * @return     Zero on success
+ */
+int ksceKernelCpuIcacheInvalidateAll(void);
+
+/**
+ * @brief      Writeback and invalidate a range of L1 icache and L2
+ *
+ * @param      ptr   The pointer
+ * @param[in]  len   The length
+ *
+ * @return     Zero on success
+ */
+int ksceKernelCpuIcacheAndL2WritebackInvalidateRange(void *ptr, size_t len);
 
 /**
  * @brief      MMU permission bypassing memcpy
@@ -149,6 +205,26 @@ int ksceKernelCpuDcacheAndL2AndDMAFlush(void *ptr, size_t len);
  * @return     Zero on success.
  */
 int ksceKernelCpuUnrestrictedMemcpy(void *dst, const void *src, size_t len);
+
+/**
+ * @brief      Suspend all interrupts (disables IRQs)
+ *
+ * @param[in]  addr   Mutex associated to the suspend-resume pair
+ *
+ * @return     The current state of the interrupt controller, to be used with ksceKernelCpuResumeIntr.
+ */
+int ksceKernelCpuSuspendIntr(int *addr);
+
+/**
+ * @brief      Resume all interrupts (enables IRQs)
+ *
+ * @param[in]  addr   Mutex associated to the suspend-resume pair
+ * @param[in]  prev_state   State obtained from ksceKernelCpuSuspendIntr
+ *
+ * @return     The previous state of the interrupt controller.
+ */
+int ksceKernelCpuResumeIntr(int *addr, int prev_state);
+
 
 #ifdef __cplusplus
 }

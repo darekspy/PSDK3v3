@@ -1,6 +1,6 @@
 /**
- * \usergroup{SceUsbd}
- * \usage{psp2kern/usbd.h,-lSceUsbdForDriver_stub}
+ * \kernelgroup{SceUsbd}
+ * \usage{psp2kern/usbd.h,SceUsbdForDriver_stub}
  */
 
 
@@ -27,11 +27,34 @@ extern "C" {
 #define SCE_USBD_ERROR_PIPE 0x80240009
 #define SCE_USBD_ERROR_TIMEOUT 0x80240007
 
-typedef struct SceUsbdDeviceInfo {
-	unsigned int unk0;
-	unsigned int unk1;
-	unsigned int unk2;
-} SceUsbdDeviceInfo; /* size = 0xC */
+typedef struct SceUsbdDeviceDescriptor {
+	unsigned char  bLength;
+	unsigned char  bDescriptorType;
+	unsigned short bcdUSB;
+	unsigned char  bDeviceClass;
+	unsigned char  bDeviceSubClass;
+	unsigned char  bDeviceProtocol;
+	unsigned char  bMaxPacketSize0;
+	unsigned short idVendor;
+	unsigned short idProduct;
+	unsigned short bcdDevice;
+	unsigned char  iManufacturer;
+	unsigned char  iProduct;
+	unsigned char  iSerialNumber;
+	unsigned char  bNumConfigurations;
+} SceUsbdDeviceDescriptor; /* size = 20 */
+
+typedef struct SceUsbdEndpointDescriptor {
+	unsigned char  bLength;
+	unsigned char  bDescriptorType;
+	unsigned char  bEndpointAddress;
+	unsigned char  bmAttributes;
+	unsigned short wMaxPacketSize;
+	unsigned char  bInterval;
+
+	unsigned char *extra;   /* Extra descriptors */
+	int extraLength;
+} SceUsbdEndpointDescriptor; /* size 16 */
 
 typedef struct SceUsbdDeviceAddress {
 	unsigned int unk0;
@@ -40,14 +63,40 @@ typedef struct SceUsbdDeviceAddress {
 
 typedef struct SceUsbdDriver {
 	const char *name;
-	int (*probe)(SceUID id);
-	int (*attach)(SceUID id);
-	int (*detach)(SceUID id);
-	SceUsbdDriver *next;
-} SceUsbdDriver; /* size = 0x14 */
+	int (*probe)(int device_id);
+	int (*attach)(int device_id);
+	int (*detach)(int device_id);
+} SceUsbdDriver; /* size = 0x10 */
 
-int ksceUsbdRegisterDriver(SceUsbdDriver *driver);
+typedef struct SceUsbdControlTransferRequest {
+	unsigned char bmRequestType;
+	unsigned char bRequest;
+	unsigned short wValue;
+	unsigned short wIndex;
+	unsigned short wLength;
+} SceUsbdControlTransferRequest; /* size = 0x08 */
 
+int ksceUsbdRegisterDriver(const SceUsbdDriver *driver);
+int ksceUsbdRegisterCompositeLdd(const SceUsbdDriver *driver);
+int ksceUsbdUnregisterDriver(const SceUsbdDriver *driver);
+
+void *ksceUsbdGetDescriptor(int device_id, void *prevDescriptor, unsigned char bDescriptorType);
+
+// endpoint = NULL to open the default control endpoint
+int ksceUsbdOpenEndpoint(int device_id, SceUsbdEndpointDescriptor *endpoint);
+int ksceUsbdCloseEndpoint(int endpoint_id);
+
+int ksceUsbdControlTransfer(int endpoint_id,
+	const SceUsbdControlTransferRequest *req,
+	unsigned char *buffer,
+	int (*cb)(int, int, int),
+	void *user_data);
+
+int ksceUsbdInterruptTransfer(int endpoint_id,
+	unsigned char *buffer,
+	unsigned int length,
+	int (*cb)(int, int, int),
+	void *user_data);
 
 #ifdef __cplusplus
 }

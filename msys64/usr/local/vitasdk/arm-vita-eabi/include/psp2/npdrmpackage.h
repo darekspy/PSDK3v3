@@ -1,6 +1,6 @@
 /**
  * \usergroup{SceNpDrmPackage}
- * \usage{psp2/npdrmpackage.h,-lSceNpDrmPackage_stub}
+ * \usage{psp2/npdrmpackage.h,SceNpDrmPackage_stub}
  */
 
 
@@ -14,13 +14,13 @@ extern "C" {
 #endif
 
 /** Options for _sceNpDrmPackageDecrypt */
-typedef struct {
+typedef struct _sceNpDrmPackageDecrypt {
 	/** The offset in the encrypted data */
 	SceOff offset;
 
 	/**
 	 * The identifier specified for _sceNpDrmPackageCheck but NOT ORed
-     * with (1 << 8)
+	 * with (1 << 8)
 	 */
 	unsigned int identifier;
 } _sceNpDrmPackageDecrypt_opt;
@@ -48,8 +48,8 @@ int _sceNpDrmPackageCheck(const void *buffer, SceSize size, int zero, unsigned i
  *
  * @return 0 on success, != 0 on error
  */
-int _sceNpDrmPackageDecrypt(void * restrict buffer, SceSize size, _sceNpDrmPackageDecrypt_opt * restrict opt);
-	
+int _sceNpDrmPackageDecrypt(void * __restrict__ buffer, SceSize size, _sceNpDrmPackageDecrypt_opt * __restrict__ opt);
+
 #ifdef __cplusplus
 }
 #endif

@@ -1,6 +1,6 @@
 /**
  * \usergroup{SceNetCtl}
- * \usage{psp2/net/netctl.h,-lSceNetCtl_stub}
+ * \usage{psp2/net/netctl.h,SceNetCtl_stub}
  */
 
 
@@ -18,7 +18,7 @@ extern "C" {
 #define SCE_NETCTL_INFO_CONFIG_NAME_LEN_MAX 64
 #define SCE_NETCTL_INFO_SSID_LEN_MAX        32
 
-enum {
+typedef enum SceNetCtlInfoType {
 	SCE_NETCTL_INFO_GET_CNF_NAME = 1,
 	SCE_NETCTL_INFO_GET_DEVICE,
 	SCE_NETCTL_INFO_GET_ETHER_ADDR,
@@ -41,15 +41,15 @@ enum {
 	SCE_NETCTL_INFO_GET_HTTP_PROXY_CONFIG,
 	SCE_NETCTL_INFO_GET_HTTP_PROXY_SERVER,
 	SCE_NETCTL_INFO_GET_HTTP_PROXY_PORT,
-};
+} SceNetCtlInfoType;
 
-enum {
+typedef enum SceNetCtlState {
 	SCE_NETCTL_STATE_DISCONNECTED,
 	SCE_NETCTL_STATE_CONNECTING,
 	SCE_NETCTL_STATE_FINALIZING,
 	SCE_NETCTL_STATE_CONNECTED
-};
-	
+} SceNetCtlState;
+
 /* callback */
 
 typedef void *(*SceNetCtlCallback)(
