@@ -1,9 +1,0 @@
-%FILES%
-usr/
-usr/include/
-usr/include/gmp.h
-usr/include/gmpxx.h
-usr/lib/
-usr/lib/libgmp.dll.a
-usr/lib/libgmpxx.dll.a
-
