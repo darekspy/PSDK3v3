@@ -1,0 +1,92 @@
+************************************* Invoked: ter out 3 16:27:36 2017
+[0] Arguments: C:\Users\zecoxao\Downloads\Programs\msys2-x86_64-20161025.exe
+[19] Operations sanity check succeeded.
+[15822] backup  operation: Mkdir
+[15822] 	- arguments: C:/workarea/PSDK3v3/msys64
+[15822] Done
+[15823] perform  operation: Mkdir
+[15823] 	- arguments: C:/workarea/PSDK3v3/msys64
+[15823] Done
+[15823] Install size: 2 components
+[15857] backup com.msys2.root.base operation: Extract
+[15857] 	- arguments: installer://com.msys2.root.base/20161025msys64.7z, C:\workarea\PSDK3v3\msys64
+[15857] Done
+[15858] perform com.msys2.root.base operation: Extract
+[15858] 	- arguments: installer://com.msys2.root.base/20161025msys64.7z, C:\workarea\PSDK3v3\msys64
+[30864] Done
+[30865] backup com.msys2.root.base operation: CreateShortcut
+[30865] 	- arguments: C:\workarea\PSDK3v3\msys64\msys2_shell.cmd, C:\Users\zecoxao\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\MSYS2 64bit/MSYS2 MinGW 32-bit.lnk, -mingw32
+[30865] Done
+[30865] perform com.msys2.root.base operation: CreateShortcut
+[30865] 	- arguments: C:\workarea\PSDK3v3\msys64\msys2_shell.cmd, C:\Users\zecoxao\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\MSYS2 64bit/MSYS2 MinGW 32-bit.lnk, -mingw32
+[30873] Done
+[30874] backup com.msys2.root.base operation: CreateShortcut
+[30874] 	- arguments: C:\workarea\PSDK3v3\msys64\msys2_shell.cmd, C:\Users\zecoxao\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\MSYS2 64bit/MSYS2 MinGW 64-bit.lnk, -mingw64
+[30874] Done
+[30874] perform com.msys2.root.base operation: CreateShortcut
+[30874] 	- arguments: C:\workarea\PSDK3v3\msys64\msys2_shell.cmd, C:\Users\zecoxao\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\MSYS2 64bit/MSYS2 MinGW 64-bit.lnk, -mingw64
+[30879] Done
+[30879] backup com.msys2.root.base operation: CreateShortcut
+[30879] 	- arguments: C:\workarea\PSDK3v3\msys64\msys2_shell.cmd, C:\Users\zecoxao\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\MSYS2 64bit/MSYS2 MSYS.lnk, -msys
+[30879] Done
+[30879] perform com.msys2.root.base operation: CreateShortcut
+[30879] 	- arguments: C:\workarea\PSDK3v3\msys64\msys2_shell.cmd, C:\Users\zecoxao\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\MSYS2 64bit/MSYS2 MSYS.lnk, -msys
+[30884] Done
+[30884] backup com.msys2.root.base operation: Execute
+[30884] 	- arguments: C:\workarea\PSDK3v3\msys64\usr\bin\bash.exe, --login, -c, exit
+[30884] Done
+[30885] perform com.msys2.root.base operation: Execute
+[30885] 	- arguments: C:\workarea\PSDK3v3\msys64\usr\bin\bash.exe, --login, -c, exit
+[30891] C:\\workarea\\PSDK3v3\\msys64\\usr\\bin\\bash.exe" started, arguments: "--login -c exit
+[31206] Copying skeleton files.\nThese files are for the users to personalise their msys2 experience.\n\nThey will never be overwritten nor automatically updated.\n\n
+[31277] './.bashrc' -> '/home/zecoxao//.bashrc'\n'./.bash_logout' -> '/home/zecoxao//.bash_logout'\n'./.bash_profile' -> '/home/zecoxao//.bash_profile'\n
+[31287] './.inputrc' -> '/home/zecoxao//.inputrc'\n
+[31318] './.profile' -> '/home/zecoxao//.profile'\n
+[31388] 'C:\\Windows\\system32\\drivers\\etc\\hosts' -> '/etc/hosts'\n
+[31418] 'C:\\Windows\\system32\\drivers\\etc\\protocol' -> '/etc/protocols'\n
+[31448] 'C:\\Windows\\system32\\drivers\\etc\\services' -> '/etc/services'\n
+[31519] 'C:\\Windows\\system32\\drivers\\etc\\networks' -> '/etc/networks'\n
+[32641] ==> Updating trust database...\n
+[32801] ==> Appending keys from msys2.gpg...\n
+[32861] ==> Locally signing trusted keys in keyring...\n
+[32871]   -> Locally signing key D55E7A6D7CE9BA1587C0ACACF40D263ECA25678A...\n
+[32953]   -> Locally signing key 123D4D51A1793859C2BE916BBBE514E53E0D0813...\n
+[33023]   -> Locally signing key B91BCF3303284BF90CC043CA9F418C233E652008...\n
+[33093]   -> Locally signing key 9DD0D4217D75A33B896159E6DA7EF2ABAEEA755C...\n
+[33243] ==> Importing owner trust values...\n==> Updating trust database...\n
+[33623] gpgkeys: key 87A48F57EA37CC7F2E352687C96166AD97A6E44F not found on keyserver\n
+[34403] --> Installing /usr/share/info/assuan.info.gz ... done\n--> Installing /usr/share/info/autosprintf.info.gz ... done\n--> Installing /usr/share/info/bash.info.gz ...
+[34433]  done\n--> Installing /usr/share/info/coreutils.info.gz ...
+[34503]  done\n--> Installing /usr/share/info/find.info.gz ...
+[34513]  done\n--> Installing /usr/share/info/find-maint.info.gz ...
+[34543]  done\n--> Installing /usr/share/info/flex.info.gz ...
+[34573]  done\n--> Installing /usr/share/info/gawk.info.gz ...
+[34643]  done\n--> Installing /usr/share/info/gawkinet.info.gz ...
+[34673]  done\n--> Installing /usr/share/info/gettext.info.gz ...
+[34743]  done\n--> Installing /usr/share/info/gmp.info.gz ... done\n--> Installing /usr/share/info/gnupg1.info.gz ...
+[34773]  done\n--> Installing /usr/share/info/gpgme.info.gz ...
+[34803]  done\n--> Installing /usr/share/info/grep.info.gz ...
+[34833]  done\n--> Installing /usr/share/info/gzip.info.gz ...
+[34863]  done\n--> Installing /usr/share/info/history.info.gz ...
+[34893]  done\n--> Installing /usr/share/info/inetutils.info.gz ...
+[34923]  done\n--> Installing /usr/share/info/info-stnd.info.gz ...
+[34955]  done\n--> Installing /usr/share/info/libffi.info.gz ...
+[34985]  done\n--> Installing /usr/share/info/libgomp.info.gz ...
+[35057]  done\n--> Installing /usr/share/info/libidn.info.gz ...
+[35067]  done\n--> Installing /usr/share/info/libquadmath.info.gz ...
+[35097]  done\n--> Installing /usr/share/info/libtasn1.info.gz ...
+[35127]  done\n--> Installing /usr/share/info/m4.info.gz ...
+[35157]  done\n--> Installing /usr/share/info/mpfr.info.gz ...
+[35187]  done\n--> Installing /usr/share/info/readline.info.gz ...
+[35217]  done\n--> Installing /usr/share/info/rluserman.info.gz ...
+[35287]  done\n--> Installing /usr/share/info/sed.info.gz ... done\n--> Installing /usr/share/info/time.info.gz ...
+[35317]  done\n--> Installing /usr/share/info/wget.info.gz ...
+[35347]  done\n--> Installing /usr/share/info/which.info.gz ...
+[35377]  done\n
+[37073] \x1B[H\x1B[J\n\n###################################################################\n#                                                                 #\n#                                                                 #\n#                   C   A   U   T   I   O   N                     #\n#                                                                 #\n#                  This is first start of MSYS2.                  #\n#       You MUST restart shell to apply necessary actions.        #\n#                                                                 #\n#                                                                 #\n###################################################################\n\n\n\x1B[H\x1B[J
+[37073] Done
+[37080] Writing maintenance tool: "C:\\workarea\\PSDK3v3\\msys64/maintenancetool.exe.new"
+[37186] Wrote permissions for maintenance tool.
+[37580] Maintenance tool restart: false.
+[37582] SHOW FINISHED PAGE
+[39421] starting "C:\\workarea\\PSDK3v3\\msys64/msys2_shell.cmd" ()

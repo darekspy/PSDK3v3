@@ -1,0 +1,6 @@
+Built at 2017-10-01 03:55:17
+newlib            1b87d020b9319e63725a4d839bf4fe3dace2a13f
+pthread-embedded  d028a893d849cc8ce3fe2c30a97562ad2970e6a9
+samples           cc4da4e57b995850abf5da3c1c9d0f2b34196683
+vita-headers      87aa6fd722cc615a126b3c2ab4d5e3b9ef8e4634
+vita-toolchain    25d343b448d4d4f9883b6f38e44a4e0ac8355865
